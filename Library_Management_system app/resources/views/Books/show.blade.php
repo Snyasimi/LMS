@@ -29,41 +29,46 @@
                     <tbody>
 
                         <tr>
-                            <td>TITLE</td>
-                            <td>THE RIGHTEOUS REVENGE OT ARTEMIS BONNER</td>
+                            <td class=" has-text-weight-bold">TITLE</td>
+                            <td class="has-text-centered ">THE RIGHTEOUS REVENGE OT ARTEMIS BONNER</td>
                         </tr>
 
                         <tr>
-                            <td>ISBN</td>
-                            <td>LB .BC3355</td>
+                            <td class=" has-text-weight-bold">ISBN</td>
+                            <td class="has-text-centered " >LB .BC3355</td>
                         </tr>
 
                         <tr>
-                            <td>AUTHOR</td>
-                            <td>William J.SHakespeer</td>
+                            <td class="has-text-weight-bold">AUTHOR</td>
+                            <td class="has-text-centered ">William J.SHakespeer</td>
                         </tr>
 
                         <tr>
-                            <td>DESCRIPTION</td>
-                            <td>In 1880, fifteen-year-old Artemis Bonner, an African-American New Yorker, travels to Tombstone Arizona, to avenge his uncle's murder and claim his gold stake. Artemis and his friend Frolic have several harrowing escapes and unusual adventures in this wildly funny romp through the Old West/td>
+                            <td class="has-text-weight-bold">DESCRIPTION</td>
+                            <td class="has-text-centered ">In 1880, fifteen-year-old Artemis Bonner, an African-American New Yorker, travels to Tombstone Arizona, to avenge his uncle's murder and claim his gold stake. Artemis and his friend Frolic have several harrowing escapes and unusual adventures in this wildly funny romp through the Old West</td>
                         </tr>
 
                        
 
                         <tr>
-                            <td>CALL NUMBER</td>
-                            <td>5657</td>
+                            <td class="has-text-weight-bold">CALL NUMBER</td>
+                            <td class="has-text-centered ">5657</td>
                         </tr>
 
                         <tr>
-                            <td>COPIES</td>
-                            <td>5657</td>
+                            <td class="has-text-weight-bold">COPIES</td>
+                            <td class="has-text-centered ">5657</td>
                         </tr>
 
 
                         <tr>
-                            <td>REQUEST BOOK</td>
-                            <td><a href="" class="button">Request</a></td>
+                            <td class="has-text-weight-bold">REQUEST BOOK</td>
+                            <td>
+                                <a href="" class="button">Request</a>
+                                <a href="" class="button">Edit</a>
+                            
+                            </td>
+                        
                         </tr>
 
 

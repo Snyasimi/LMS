@@ -20,7 +20,7 @@ class BooksController extends Controller
      */
     public function create()
     {
-        //
+        return view('Books.create');
     }
 
     /**
@@ -28,7 +28,7 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -36,7 +36,7 @@ class BooksController extends Controller
      */
     public function show(Books $books)
     {
-        //
+        return view('Books.show');
     }
 
     /**
@@ -44,7 +44,8 @@ class BooksController extends Controller
      */
     public function edit(Books $books)
     {
-        //
+        $book = 'book';
+        return view('Books.edit')->with(['book' => $book]);
     }
 
     /**
@@ -61,5 +62,21 @@ class BooksController extends Controller
     public function destroy(Books $books)
     {
         //
+    }
+
+
+    public function borrow_book(Request $req,Books $book)
+    {
+        $validate = $req->validate(
+            [
+                'Book_id' => ['required','uuid']
+            ]
+            );
+
+            #Query the book
+
+            #add borrower to table 
+
+            return back()->with(['Message' => 'Book requested, visit your librarian for further ']);
     }
 }

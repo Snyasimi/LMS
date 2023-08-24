@@ -26,8 +26,8 @@
                             <ul class="menu-list">
 
                                 <li><a href="">Home</a></li>                                
-                                <li><a href="">Borrow Book</a></li>
-                                <li><a href="">Look For a Book</a></li>
+                                
+                                <li><a href="">Find a Book</a></li>
                                 <li><a href="">Change password</a></li>
                                 <li><a href="">Profile</a></li>
                                 <li><a href="">Log Out</a></li>

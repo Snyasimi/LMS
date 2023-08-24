@@ -7,16 +7,17 @@
 
         <div class="tile is-child ">
 
-            <div class="hero is-small box has-background-info-dark">
+            <div class="hero is-small box has-background-grey-dark ">
 
-                <div class="hero-body">
-
-                    <h1 class="title has-text-left is-size-1 has-text-white ">
-                         Profile
-                    </h1>
-
+                <div class="hero-body pb-1">
+    
+                    <h1 class="title has-text-left is-size-1 mt-6 is-size-1 has-text-white ">
+                        Profile
+                    </h1>    
+    
                 </div>
-
+    
+                
             </div>
 
             <table class="table is-fullwidth is-striped">
@@ -33,7 +34,7 @@
                         <td class="has-text-weight-semibold">
                             Book Details
                         </td>
-                        <td class="has-background-danger-light has-text-weight-semibold">
+                        <td class="has-background-grey-light has-text-weight-semibold">
                             Book Due
                         </td>
                     </tr>
