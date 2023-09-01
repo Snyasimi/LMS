@@ -1,5 +1,5 @@
-@extends('Users.Template')
-@section('title','Search a book')
+@extends('AdminViews.Template')
+
 
 @section('content')
 
@@ -12,7 +12,7 @@
             <div class="hero-body pb-1">
 
                 <h1 class="title has-text-left is-size-1 mt-6 is-size-1 has-text-white ">
-                     Look For a Book
+                     Search for a user
                 </h1>
 
             </div>
@@ -21,16 +21,16 @@
         </div>
 
 
-        <form action="">
+        <form action="{{ route('query_users') }}" method="POST">
             @csrf
 
             <div class="field">
 
-                <label for="searchbook" class="label">Search for a book</label>
+                <label for="searchbook" class="label">Enter Registration Number</label>
 
                 <div class="control">
 
-                    <input type="text" class="input" name="BookName" placeholder="Enter Book Name">
+                    <input type="text" class="input" name="data" placeholder="Enter User  Resistration number">
 
                 </div>
 
@@ -46,49 +46,52 @@
 
                 <div class="control">
 
-                    <button class="button is-outlined is-danger" type="submit">Clear</button>
+                    <button class="button is-outlined is-danger" type="reset">Clear</button>
 
                 </div>
 
             </div>
         </form>
 
-        {{-- @if($Book) --}}
+
+            @isset($users)
 
             <table class="table is-fullwidth is-bordered mt-5">
 
                 <thead>
                     <tr>
-                        <td class="has-text-weight-semibold">Book Title</td>
-                        <td class="has-text-weight-semibold">Book Description</td>
-                        <td class="has-text-weight-semibold">Copies Left</td>
-                        <td class="has-text-weight-semibold"></td>
+                        <td class="has-text-weight-semibold">Names</td>
+                        <td class="has-text-weight-semibold">Registration Number</td>
+                        <td class="has-text-weight-semibold">Books borrowed</td>
+                        <td class="has-text-weight-semibold">Option</td>
                     </tr>
                 </thead>
 
                 <tbody>
                     
-                    @forelse($books as $book)
+                    @forelse($users as $user)
 
                     <tr>
-                        <td>{{ $book->Title }}</td>
-                        <td>{{ $book->Description }}</td>
-                        <td>{{ $book->book_details->Quantity}}</td>
+                        <td>{{ $user->FirstName." ".$user->LastName }}</td>
+                        <td>{{ $user->RegNo}}</td>
+                        <td>{{ $user->book_issued->count()}}</td>
                         <td>
-                            <a href="{{ route('Book.show',['Book' => $book->id])}}" class="button  is-info">View Book</a>
+                            <a href="{{ route('User.show',['User' => $user->User_id] ) }}" class="button  is-info">Show user</a>
                         </td>
                     </tr>
 
                     @empty
                         <tr>
 
-                            <td colspan="4">No books available for now</td>
+                            <td colspan="4">No such user</td>
 
                         </tr>
                     @endforelse
 
 
             </table>
+
+            @endisset
 
     </div>
 

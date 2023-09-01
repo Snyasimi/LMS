@@ -21,8 +21,9 @@
             
         </div>
 
-        <form action="" class="form">
+        <form action="{{ route('Book.update',['Book' => $book->id])}}" method="POST" class="form">
             @csrf
+            @method('PUT')
         
             <div class="field is-horizontal">
         
@@ -36,7 +37,29 @@
         
                     <div class="field">
         
-                        <input type="text" class="input" name="BookName" placeholder="Book Name" disabled value="1123456">
+                        <input type="text" class="input" name="BookId" placeholder="Book Name" disabled value="{{ $book->id }}">
+                        
+        
+                    </div>
+        
+                </div>
+        
+            </div>
+
+
+            <div class="field is-horizontal">
+        
+                <div class="field-label">
+        
+                    <label for="Author" class="label">Author</label>
+        
+                </div>
+        
+                <div class="field-body">
+        
+                    <div class="field">
+        
+                        <input type="text" class="input" name="Author" placeholder="Author" value="{{ $book->Author}}">
                         
         
                     </div>
@@ -58,7 +81,7 @@
         
                     <div class="field">
         
-                        <input type="text" class="input" name="BookName" placeholder="Book Name">
+                        <input type="text" class="input" name="BookName" placeholder="Book Name" value="{{ $book->Title }}">
                         
         
                     </div>
@@ -79,7 +102,7 @@
         
                     <div class="control">
         
-                        <input type="text" class="input" name="ISBN" placeholder="LB .BD550">
+                        <input type="text" class="input" name="ISBN" placeholder="LB .BD550" value="{{$book->ISBN}}">
         
                     </div>
         
@@ -105,9 +128,11 @@
                             <div class="select">
         
                                 <select name="Category">
-                                    <option value="----">Select Category</option>
-                                    <option value="Fiction">Fiction</option>
-                                    <option value="Fiction">Fiction</option>
+                                    @forelse($categories as $category)
+					<option value="{{ $category->id }}">{{ $category->Category}}</option>
+				    @empty
+					<option vlaue="">NO CATEGORIES</option>
+				    @endforelse
                                 </select>
         
                             </div>
@@ -133,7 +158,7 @@
         
                     <div class="control">
         
-                        <input type="text" class="input" name="CallNumber" placeholder="55543">
+                        <input type="text" class="input" name="CallNumber" placeholder="55543" value="{{ $book->book_details->Call_number}}">
         
                     </div>
         
@@ -155,7 +180,7 @@
         
                     <div class="control">
         
-                        <input type="number" class="input" name="NumberOfCopies">
+                        <input type="number" class="input" name="NumberOfCopies" value="{{ $book->book_details->Total}}">
                         <p class="help">Total copies of the book</p>
         
                     </div>
@@ -176,7 +201,7 @@
         
                     <div class="control">
         
-                        <textarea name="" id="" cols="50" rows="5" class="textarea" placeholder="Describe the book" name="BookDescription"></textarea>
+                        <textarea id="" cols="50" rows="5" class="textarea" placeholder="Describe the book" name="BookDescription">{{$book->Description}} </textarea>
                         
         
                     </div>

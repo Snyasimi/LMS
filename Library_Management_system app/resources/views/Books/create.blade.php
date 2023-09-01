@@ -20,7 +20,7 @@
             
         </div>
 
-        <form action="" class="form">
+        <form action={{route('Book.store')}} method="POST" class="form">
             @csrf
         
             <div class="field is-horizontal">
@@ -36,6 +36,28 @@
                     <div class="field">
         
                         <input type="text" class="input" name="BookName" placeholder="Book Name">
+                        
+        
+                    </div>
+        
+                </div>
+        
+            </div>
+
+
+            <div class="field is-horizontal">
+        
+                <div class="field-label">
+        
+                    <label for="Author" class="label">Author</label>
+        
+                </div>
+        
+                <div class="field-body">
+        
+                    <div class="field">
+        
+                        <input type="text" class="input" name="Author" placeholder="Author">
                         
         
                     </div>
@@ -69,7 +91,7 @@
         
                 <div class="field-label">
         
-                    <label for="StaffNumber" class="label">Category</label>
+                    <label for="Category" class="label">Category</label>
         
                 </div>
         
@@ -82,9 +104,11 @@
                             <div class="select">
         
                                 <select name="Category">
-                                    <option value="----">Select Category</option>
-                                    <option value="Fiction">Fiction</option>
-                                    <option value="Fiction">Fiction</option>
+                                    @forelse($categories as $category)
+					<option value="{{ $category->id }}">{{ $category->Category}}</option>
+				    @empty
+					<option vlaue="">NO CATEGORIES</option>
+				    @endforelse
                                 </select>
         
                             </div>
@@ -102,7 +126,7 @@
         
                 <div class="field-label">
         
-                    <label for="StaffNumber" class="label">Call Number</label>
+                    <label for="CallNumber" class="label">Call Number</label>
         
                 </div>
         
@@ -153,7 +177,7 @@
         
                     <div class="control">
         
-                        <textarea name="" id="" cols="50" rows="5" class="textarea" placeholder="Describe the book" name="BookDescription"></textarea>
+                        <textarea cols="50" rows="5" class="textarea" placeholder="Describe the book" name="BookDescription"></textarea>
                         
         
                     </div>

@@ -11,7 +11,8 @@
 
                 <div class="tile is-child">
 
-                    <form action="" class="form box">
+                    <form action="{{ route('create_profile') }}" method="POST" class="form box">
+                        @csrf
 
                         <div class="field is-horizontal">
 
@@ -55,6 +56,26 @@
 
                                     <div class="control">
                                         <input type="email" class="input" name="Email">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="field is-horizontal">
+
+                            <div class="field-label">
+                                <label for="Email" class="label">Registration Number</label>
+                            </div>
+
+                            <div class="field-body">
+
+                                <div class="field">
+
+                                    <div class="control">
+                                        <input type="text" class="input" name="RegNo">
                                     </div>
 
                                 </div>
@@ -115,7 +136,7 @@
                                 <div class="field">
 
                                     <div class="control">
-                                        <input type="text" class="input" name="Password">
+                                        <input type="password" class="input" name="Password">
                                     </div>
 
                                 </div>
@@ -136,7 +157,7 @@
                                 <div class="field">
 
                                     <div class="control">
-                                        <input type="text" class="input" name="ConfirmPassword">
+                                        <input type="password" class="input" name="Confirm_password">
                                     </div>
 
                                 </div>

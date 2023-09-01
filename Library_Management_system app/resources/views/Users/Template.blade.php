@@ -25,12 +25,18 @@
                             <p class="menu-label  is-size-5 has-text-centered"> NAVIGATION MENU</p>
                             <ul class="menu-list">
 
-                                <li><a href="">Home</a></li>                                
+                                <li><a href="{{route('Book.index')}}">Home</a></li>                                
                                 
-                                <li><a href="">Find a Book</a></li>
+                                <li><a href="{{ route('find_book') }}">Find a Book</a></li>
                                 <li><a href="">Change password</a></li>
                                 <li><a href="">Profile</a></li>
-                                <li><a href="">Log Out</a></li>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button class="button" type="submit">Log out</button>
+
+                                    </form>
+                                </li>
                                 
                             </ul>
         

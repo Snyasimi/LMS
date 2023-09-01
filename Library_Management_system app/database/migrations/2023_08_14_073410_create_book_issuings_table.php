@@ -12,9 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('book_issuings', function (Blueprint $table) {
-            $table->id();
+
+            Schema::disableForeignKeyConstraints();
+
+            $table->ulid('id')->primary();
+            $table->foreignUlid('User_id')->references('user_id')->on('users');
+            $table->foreignId('Book_id')->references('id')->on('books');
+            
+
+            $table->enum('Book_status',['Returned','Lost','Borrowed','Requested']);
+
+            $table->date('Return_date');
+
+            #date borrowed will use the create_at timestamp
             $table->timestamps();
         });
+
+
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

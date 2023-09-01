@@ -89,6 +89,55 @@
                                 <td colspan="3">No Books</td>
                             </tr>
                         @endforelse --}}
+
+                        @for($i=0;$i<5;$i++)
+    
+                        <tr>
+                            <td>Book Title BOOK TITLE CJE0KX56M0Q dom random s</td>
+                            <td>Category Random random string string BJKRO02V2X8MP881E5WQHHLV2O1L</td>
+                            <td>Random random string string BJKRO02V2X8MP881E5WQHHLV2O1LF4LE
+                                45FT35D5CDQCJE0KX56M0Q0YS950JVFQ
+                                U058DTRIPPFRK6CW6NTW7OI0DBKMHOR0</td>
+                                <td>
+                                   <a href="" class="button  is-info">View Book</a>
+                                </td>
+
+                                <td>
+                                    <a href="" class="button  is-info">Edit Book</a>
+                                 </td>
+                        </tr>
+
+                    @endfor
+
+                    </tbody>
+                </table>
+
+                <table class="table is-fullwidth">
+                    
+                    <thead>
+                        <tr class="has-background-grey-lighter">
+                            <td {{--colspan="4"--}}>
+                                BOOKS
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="has-text-weight-semibold">
+                                Book Title
+                            </td>
+                            <td class="has-text-weight-semibold">
+                                Book Category
+                            </td>
+                            <td class="has-text-weight-semibold">
+                                Book Description
+                            </td>
+                            <td></td>
+                            <td></td>
+                                
+                        </tr>
+    
+                    </thead>
+
+                    </tbody>
     
                         @for($i=0;$i<10;$i++)
     

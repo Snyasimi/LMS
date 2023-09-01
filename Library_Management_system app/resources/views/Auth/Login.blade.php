@@ -11,7 +11,8 @@
 
                 <div class="tile is-child">
 
-                    <form action="" class="form box">
+                    <form method="POST" action="{{ route('login_action') }}" class="form box">
+                        @csrf
 
                         <div class="field">
             
@@ -19,7 +20,7 @@
             
                             <div class="control">
             
-                                <input type="text" class="input" autofocus required>
+                                <input type="text"  name="email" class="input" required>
             
                             </div>
             
@@ -31,7 +32,7 @@
             
                             <div class="control">
             
-                                <input type="password" class="input" required>
+                                <input type="password" class="input" required name="password">
             
                             </div>
             

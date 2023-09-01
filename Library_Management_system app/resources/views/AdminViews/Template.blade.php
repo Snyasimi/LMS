@@ -25,7 +25,7 @@
                             <p class="menu-label has-background-grey-dark has-text-white is-size-5 has-text-centered"> NAVIGATION MENU</p>
                             <ul class="menu-list">
 
-                                <li><a href="">Home</a></li>                                
+                                <li><a href="{{ route('AdminHome') }}">Home</a></li>                                
                                 
                                 <li><a href="">Find a Book</a></li>
                                 <li><a href="">Change password</a></li>
@@ -36,9 +36,9 @@
                             <p class="menu-label has-background-grey-dark has-text-white is-size-5 has-text-centered"> USER MANAGEMENT</p>
                             <ul class="menu-list">
 
-                                <li><a href="">Find Student</a></li>                                
+                                <li><a href="{{ route('search_user')}}">Find Student</a></li>                                
                                 
-                                <li><a href="">Add User</a></li>
+                                <li><a href="{{ route('User.create') }}">Add User</a></li>
                                
                                 
                             </ul>
@@ -47,15 +47,15 @@
                             <p class="menu-label has-background-grey-dark has-text-white  is-size-5 has-text-centered"> BOOK MANAGEMENT</p>
                             <ul class="menu-list">
 
-                                <li><a href="">Add a Book</a></li>                                
-                                <li><a href="">Find a Book</a></li>
-                                <li><a href="">Borrowed Books</a></li>
-                                <li><a href="">Book requests</a></li>
+                                <li><a href="{{ route('Book.create')}}">Add a Book</a></li>                                
+                                <li><a href="{{ route('admin_search_book')}}">Find a Book</a></li>
+                                <li><a href="{{ route('BorrowedBooks')}}">Borrowed Books</a></li>
+                                <li><a href="{{ route('RequestedBooks')}}">Book requests</a></li>
 
                                 <li>
                                     <a href="" class="has-background-grey-dark has-text-white is-size-6 is-active">Category</a>
                                     <ul>
-                                        <li class="is-size-6" ><a href="">Add A Category</a></li>
+                                        <li class="is-size-6" ><a href="{{route('viewcategory')}}">Add A Category</a></li>
                                     </ul>
                                 </li>
                                 

@@ -1,5 +1,5 @@
-@extends('Users.Template')
-@section('title','Search a book')
+@extends('AdminViews.Template')
+
 
 @section('content')
 
@@ -21,7 +21,7 @@
         </div>
 
 
-        <form action="">
+        <form action="{{ route('search_book') }}" method="POST">
             @csrf
 
             <div class="field">
@@ -75,7 +75,7 @@
                         <td>{{ $book->Description }}</td>
                         <td>{{ $book->book_details->Quantity}}</td>
                         <td>
-                            <a href="{{ route('Book.show',['Book' => $book->id])}}" class="button  is-info">View Book</a>
+                            <a href="{{ route('Book.show',['$book' => $book->id])}}" class="button  is-info">View Book</a>
                         </td>
                     </tr>
 

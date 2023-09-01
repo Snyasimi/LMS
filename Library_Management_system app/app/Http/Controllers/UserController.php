@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SignUpRequest;
+use App\Models\Book_issuing;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $req)
     {
-        return view('Users.index');
+        $user = User::with('book_issued')->findorfail(Auth::user()->User_id);
+
+        return view('Users.index',['User' => $user]);
     }
 
     /**
@@ -26,17 +31,32 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SignUpRequest $request)
     {
-        return back();
+        $validated = $request->validated();
+        $user = new User();
+        $user->FirstName = $validated['FirstName'];
+        $user->LastName = $validated['LastName'];
+        $user->email = $validated['Email'];
+        $user->RegNo = $validated['RegNo'];
+        $user->Campus = $validated['Campus'];
+        $user->Course = $validated['Course'];
+        $user->password = bcrypt($validated['Confirm_password']);
+        $user->save();
+
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show($user)
     {
-        return view('Users.show');
+        $user = User::with('book_issued')->findOrFail($user);
+
+        $BookLost = Book_issuing::where('User_id',$user)->where('Book_status','Lost')->count();
+
+        return view('Users.show',['User' => $user,'BooksLost' => $BookLost]);
     }
 
     /**

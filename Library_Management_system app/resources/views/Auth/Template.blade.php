@@ -28,8 +28,8 @@
             <div class="tabs is-right is-boxed">
 
                 <ul>
-                    <li><a href="" class="button mr-4 has-text-grey-darker">Login</a></li>
-                    <li><a href="" class="button has-text-grey-darker">Register</a></li>
+                    <li><a href="{{ route('login') }}" class="button mr-4 has-text-grey-darker">Login</a></li>
+                    <li><a href="{{ route('sign_up') }}" class="button has-text-grey-darker">Register</a></li>
                 </ul>
 
             </div>

@@ -19,8 +19,26 @@
     
                 
             </div>
+            
+            @if(session('message'))
+            
+            <div class="column mx-5 my-6">
+
+                <div class="notification is-success is-light">
+                    <ul>
+                        
+                         <li class="has-text-success is-light">{{ session('message') }}</li>
+                       
+                    </ul>
+                </div>
+
+            </div>
+
+            @endif
 
             <section class="section">
+
+                
 
                 
 
@@ -30,42 +48,47 @@
 
                         <tr>
                             <td class=" has-text-weight-bold">TITLE</td>
-                            <td class="has-text-centered ">THE RIGHTEOUS REVENGE OT ARTEMIS BONNER</td>
+                            <td class="has-text-centered ">{{ $book->Title}}</td>
                         </tr>
 
                         <tr>
                             <td class=" has-text-weight-bold">ISBN</td>
-                            <td class="has-text-centered " >LB .BC3355</td>
+                            <td class="has-text-centered " >{{ $book->ISBN}}</td>
                         </tr>
 
                         <tr>
                             <td class="has-text-weight-bold">AUTHOR</td>
-                            <td class="has-text-centered ">William J.SHakespeer</td>
+                            <td class="has-text-centered ">{{ $book->Author}}</td>
                         </tr>
 
                         <tr>
                             <td class="has-text-weight-bold">DESCRIPTION</td>
-                            <td class="has-text-centered ">In 1880, fifteen-year-old Artemis Bonner, an African-American New Yorker, travels to Tombstone Arizona, to avenge his uncle's murder and claim his gold stake. Artemis and his friend Frolic have several harrowing escapes and unusual adventures in this wildly funny romp through the Old West</td>
+                            <td class="has-text-centered ">{{ $book->Description}}</td>
                         </tr>
 
                        
 
                         <tr>
                             <td class="has-text-weight-bold">CALL NUMBER</td>
-                            <td class="has-text-centered ">5657</td>
+                            <td class="has-text-centered ">{{ $book->book_details->Call_number}}</td>
                         </tr>
 
                         <tr>
                             <td class="has-text-weight-bold">COPIES</td>
-                            <td class="has-text-centered ">5657</td>
+                            <td class="has-text-centered ">{{ $book->book_details->Quantity}}</td>
                         </tr>
 
 
                         <tr>
                             <td class="has-text-weight-bold">REQUEST BOOK</td>
                             <td>
-                                <a href="" class="button">Request</a>
-                                <a href="" class="button">Edit</a>
+                                {{-- <a href="" class="button">Request</a> --}}
+                                <form method="POST" action="{{ route('request_book',['id' => $book->id] )}}">
+                                    @csrf
+                                    {{-- <input type="text" hidden value={{$book->id}}> --}}
+                                    <button type="submit" class="button" >Request</button>
+                                </form>
+                                {{-- <a href="" class="button">Edit</a> --}}
                             
                             </td>
                         

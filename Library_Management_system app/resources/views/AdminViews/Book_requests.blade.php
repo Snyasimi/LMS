@@ -20,16 +20,7 @@
         
                     
                 </div>
-                
 
-
-            </div>
-
-        </div>
-
-        <div class="tile is-parent">
-
-            <div class="tile is-child">
 
                 <table class="table is-fullwidth">
 
@@ -57,64 +48,55 @@
                             <td class="has-text-weight-semibold">
                                 Total Copies
                             </td>
-
-
-                            <td></td>
-                            <td></td>
                                 
                         </tr>
     
                     </thead>
                     <tbody>
     
-                        {{-- FOR LOOP FOR THE FIRST 5 FOR NEW BOOKS--}}
-                        {{-- @forelse($Books as $book)
+                        
+                        @forelse($requests as $book)
                             <tr>
-                                <td>Book Title</td>
-                                <td>Category</td>
-                                <td>Description</td>
+                                <td>{{ $book->book_borrowed->Title }}</td>
+                                <td>{{ $book->borrower->FirstName }}</td>
+                                <td>{{ $book->Book_status }}</td>
+                                <td>{{$book->book_borrowed->book_details->Quantity }}</td>
+                                <td>{{ $book->book_borrowed->book_details->Total }}</td>
+
+                                <td>
+                                    <form action="{{ route('approve_book_request',['request_id' => $book->id ])}}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="button is-info" type="submit" >Approve Request</button>
+                                    </form>
+                                </td>
                             </tr>
                         @empty 
                             <tr>
-                                <td colspan="3">No Books</td>
+                                <td colspan="3">No Books requests</td>
                             </tr>
-                        @endforelse --}}
-    
-                        @for($i=0;$i<10;$i++)
-    
-                            <tr>
-                                <td>Righteous revenge of artemis bonner</td>
-                                <td>Cedrick Nyakundi</td>
-                                <td>Available
-                                </td>
-
-                                <td>
-                                    55
-                                </td>
-                                <td>
-                                    55
-                                </td>
-
-                                    <td>
-                                       <a href="" class="button  is-info">Issue Book</a>
-                                    </td>
-
-                                    {{-- <td>
-                                        <a href="" class="button  is-info">Edit Book</a>
-                                     </td> --}}
-                            </tr>
-    
-                        @endfor
-    
+                        @endforelse
     
     
                     </tbody>
     
                 </table>
+                
+
 
             </div>
 
         </div>
+
+        {{-- <div class="tile is-parent">
+
+            <div class="tile is-child">
+
+                
+
+            </div>
+
+        </div> --}}
 
     </div>
 

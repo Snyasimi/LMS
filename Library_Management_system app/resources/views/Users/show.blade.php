@@ -24,40 +24,40 @@
 
                 
 
-                <table class="table is-fullwidth">
+                <table class="table is-fullwidth is-bordered">
 
                     <tbody>
 
                         <tr>
                             <td class=" has-text-weight-bold">First Name</td>
-                            <td class="">STEVE</td>
+                            <td class="">{{ $User->FirstName }}</td>
                         </tr>
 
                         <tr>
                             <td class=" has-text-weight-bold">Last Name</td>
-                            <td class=" " >Solomon</td>
+                            <td class=" " >{{ $User->LastName }}</td>
                         </tr>
 
                         <tr>
                             <td class="has-text-weight-bold">Student/Staff ID</td>
-                            <td class=" ">ICT/001/002</td>
+                            <td class=" ">{{ $User->RegNo }}</td>
                         </tr>
 
                         <tr>
                             <td class="has-text-weight-bold">Books Borrowed</td>
-                            <td class=" ">10</td>
+                            <td class=" ">{{ $User->book_issued->count() }}</td>
                         </tr>
 
                        
 
                         <tr>
                             <td class="has-text-weight-bold">Books Lost</td>
-                            <td class=" ">15</td>
+                            <td class=" ">{{ $BooksLost }}</td>
                         </tr>
 
 
 
-                        <tr>
+                        {{-- <tr>
                             <td class="has-text-weight-bold">REQUEST BOOK</td>
                             <td>
                                 <a href="" class="button">Request</a>
@@ -65,7 +65,7 @@
                             
                             </td>
                         
-                        </tr>
+                        </tr> --}}
 
 
                     </tbody>

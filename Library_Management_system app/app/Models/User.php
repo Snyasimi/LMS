@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,13 +11,17 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable,HasUlids;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
+
+     public $incrementing = false;
+     protected $primaryKey = 'User_id';
+     protected $KeyType = 'string';
     protected $fillable = [
         'name',
         'email',
@@ -42,4 +47,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function book_issued()
+    {
+        return $this->hasMany(Book_issuing::class,'User_id','User_id');
+    }
 }
