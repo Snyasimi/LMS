@@ -46,13 +46,13 @@
                     @forelse($User->book_issued as $book)
 
                         <tr>
-                            <td>{{$book->Title}}</td>
+                            <td>{{$book->book_borrowed->Title}}</td>
                             <td>
-                                <p class=" is-size-5 is-family-sans-serif has-text-weight-light">{{$book->Description}}</p>
-                                <p class="is-size-6 mt-3 is-italic">AUTHOR: {{$book->Author }} <span class="is-italic">the author of this book</span></p>
+                                <p class=" is-size-5 is-family-sans-serif has-text-weight-light">{{$book->book_borrowed->Description}}</p>
+                                <p class="is-size-7 mt-3 is-italic">AUTHOR: {{$book->book_borrowed->Author }} </p>
                             </td>
                             <td>
-                                15-may Q0YS950JVF
+                                {{$book->Return_date}} 
                             </td>
                         </tr>
 

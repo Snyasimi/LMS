@@ -34,9 +34,9 @@
 
                     <tbody>
                         <tr>
-                            <td class=" has-text-centered subtitle is-5">22</td>
-                            <td class=" has-text-centered subtitle is-5">5</td>
-                            <td class=" has-text-centered subtitle is-5">100</td>
+                            <td class=" has-text-centered subtitle is-5">{{ $BorrowedBooks }}</td>
+                            <td class=" has-text-centered subtitle is-5">{{ $LostBooks }}</td>
+                            <td class=" has-text-centered subtitle is-5">{{ $TotalBooks }}</td>
                         </tr>
                     </tbody>
 
@@ -61,10 +61,9 @@
                         </tr>
                         <tr>
                             <td class="has-text-weight-semibold">
-                                Book Title
-                            </td>
+                                Book Author
                             <td class="has-text-weight-semibold">
-                                Book Category
+                                Book Title
                             </td>
                             <td class="has-text-weight-semibold">
                                 Book Description
@@ -78,36 +77,18 @@
                     <tbody>
     
                         {{-- FOR LOOP FOR THE FIRST 5 FOR NEW BOOKS--}}
-                        {{-- @forelse($Books as $book)
+                        @forelse($NewBooks as $book)
                             <tr>
-                                <td>Book Title</td>
-                                <td>Category</td>
-                                <td>Description</td>
+                                <td>{{ $book->Author }}</td>
+                                <td>{{ $book->Title }}</td>
+                                <td>{{$book->Description}}</td>
                             </tr>
                         @empty 
                             <tr>
                                 <td colspan="3">No Books</td>
                             </tr>
-                        @endforelse --}}
+                        @endforelse
 
-                        @for($i=0;$i<5;$i++)
-    
-                        <tr>
-                            <td>Book Title BOOK TITLE CJE0KX56M0Q dom random s</td>
-                            <td>Category Random random string string BJKRO02V2X8MP881E5WQHHLV2O1L</td>
-                            <td>Random random string string BJKRO02V2X8MP881E5WQHHLV2O1LF4LE
-                                45FT35D5CDQCJE0KX56M0Q0YS950JVFQ
-                                U058DTRIPPFRK6CW6NTW7OI0DBKMHOR0</td>
-                                <td>
-                                   <a href="" class="button  is-info">View Book</a>
-                                </td>
-
-                                <td>
-                                    <a href="" class="button  is-info">Edit Book</a>
-                                 </td>
-                        </tr>
-
-                    @endfor
 
                     </tbody>
                 </table>
@@ -139,24 +120,17 @@
 
                     </tbody>
     
-                        @for($i=0;$i<10;$i++)
-    
-                            <tr>
-                                <td>Book Title BOOK TITLE CJE0KX56M0Q dom random s</td>
-                                <td>Category Random random string string BJKRO02V2X8MP881E5WQHHLV2O1L</td>
-                                <td>Random random string string BJKRO02V2X8MP881E5WQHHLV2O1LF4LE
-                                    45FT35D5CDQCJE0KX56M0Q0YS950JVFQ
-                                    U058DTRIPPFRK6CW6NTW7OI0DBKMHOR0</td>
-                                    <td>
-                                       <a href="" class="button  is-info">View Book</a>
-                                    </td>
-
-                                    <td>
-                                        <a href="" class="button  is-info">Edit Book</a>
-                                     </td>
-                            </tr>
-    
-                        @endfor
+                    @forelse($Books as $book)
+                    <tr>
+                        <td>{{ $book->Author }}</td>
+                        <td>{{ $book->Title }}</td>
+                        <td>{{$book->Description}}</td>
+                    </tr>
+                @empty 
+                    <tr>
+                        <td colspan="3">No Books</td>
+                    </tr>
+                @endforelse
     
     
     

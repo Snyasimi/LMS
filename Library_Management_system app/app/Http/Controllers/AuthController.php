@@ -64,10 +64,10 @@ class AuthController extends Controller
         if (Auth::attempt($credentials))
         {
             $req->session()->regenerate();
-            // if(Auth::user()->is_admin)
-            // {
-            //     return redirect()->route('AdminHome');
-            // }
+            if(Auth::user()->is_admin)
+            {
+                return redirect()->intended(route('AdminHome'));
+            }
 
             return redirect()->intended(route('User.index'));
         }

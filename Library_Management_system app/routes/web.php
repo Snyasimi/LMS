@@ -50,6 +50,8 @@ Route::middleware('auth')->group(function(){
     //ADMIN ROUTES
     Route::prefix('Admin')->group(function(){
 
+        Route::middleware('isadmin')->group(function()
+    {
         Route::get('/home',[AdminController::class,'home'])->name('AdminHome');
         Route::get('/search-books',[BooksController::class,'find_book'])->name('admin_search_book');
         Route::get('/book-requests',[AdminController::class,'book_requests'])->name('RequestedBooks');
@@ -57,7 +59,9 @@ Route::middleware('auth')->group(function(){
         Route::get('/search-users',[AdminController::class,'search'])->name('search_user');
         Route::post('/search-user',[AdminController::class,'search_user'])->name('query_users');
         Route::put('/approve-request/{request_id}',[AdminController::class,'approve_book_request'])->name('approve_book_request');
+        Route::put('/return-book/{request_id}',[AdminController::class,'return_book'])->name('return_book');
         
+    });
     
     }
     );

@@ -10,21 +10,29 @@ class AdminController extends Controller
 {
     public function home()
     {
-        $newbooks = Books::limit(10)->lazy();
-        $data = [
-            'Lost Books' => Book_issuing::where('Books_status','Lost')->count(),
-            'Borrowed Books' => Book_issuing::where('Books_status','Lost')->count(),
-            'Total Books' => Books::count()
-        ];
+        $books = Books::orderBy('created_at','asc')->lazy();
+        $newbooks = $books->take(10);
+        $Lost_Books = Book_issuing::where('Books_status','Lost')->count();
+        $Borrowed_Books = Book_issuing::where('Books_status','Borrowed')->count();
+        $Total_Books = Books::count();
 
 
-        return view('AdminViews.index',[]);
+        return view('AdminViews.index',[
+            'Books' => $books,
+            'LostBooks' => $Lost_Books,
+            'BorrowedBooks' => $Borrowed_Books,
+            'TotalBooks' => $Total_Books,
+            'NewBooks' => $newbooks
+        ]);
     }
 
     public function book_requests()
     {
 
-        $requested_books = Book_issuing::with(['borrower','book_borrowed'])->where('Book_status','Requested')->lazy();
+        $requested_books = Book_issuing::with(['borrower','book_borrowed'])
+                                        ->where('Book_status','Requested')
+                                        ->orderBy('created_at','asc')->lazy();
+
         return view('AdminViews.Book_requests',[
             'requests' => $requested_books
         ]);
@@ -32,14 +40,7 @@ class AdminController extends Controller
 
     
 
-    public function return_book($book_issue_id)
-    {
-        $book = Book_issuing::findorfail($book_issue_id);
-        $book->Book_status = 'Returned';
-        $book->save();
-
-      return redirect()->back()->with(['message' => 'Book returned']);  
-    }
+    
 
     public function search()
     {
@@ -58,6 +59,7 @@ class AdminController extends Controller
         $user = User::where('FirstName','like','%'.$validate['data'].'%')
                         ->orWhere('LastName','like','%'.$validate['data'].'%')
                         ->orWhere('RegNo','like','%'.$validate['data'].'%')
+                        ->orderBy('FirstName')
                         ->lazy();
                         //dd($user);
 
@@ -72,7 +74,8 @@ class AdminController extends Controller
 
     public function borrowed_books()
     {
-        $borrowed_books = Book_issuing::with(['borrower','book_borrowed'])->where('Book_status','Borrowed')->lazy();
+        $borrowed_books = Book_issuing::with(['borrower','book_borrowed'])->where('Book_status','Borrowed')
+                                        ->orderBy('created_at','asc')->lazy();
         return view('AdminViews.Borrowed_books',[
             'borrowed_books' => $borrowed_books
         ]);
@@ -85,15 +88,36 @@ class AdminController extends Controller
 
         DB::transaction(function() use($request){
 
-        $book_quantity = $request->book_borrowed->book_details->Quantity;
-        $request->book_borrowed->book_details->Quantity = $book_quantity - 1;
+            $book_details = $request->book_borrowed->book_details;//->Quantity;        
+            $book_details->decrement('Quantity',1);
 
-        $request->Book_status = 'Borrowed';
-        $request->Return_date = now()->addWeeks(2);
-        $request->save();
+            //$request->book_borrowed->book_details->Quantity = $book_quantity - 1;
+            $request->Book_status = 'Borrowed';
+            $request->Return_date = now()->addWeeks(2)->toFormattedDayDateString();
+            $request->save();
 
         });
 
+        return redirect()->back()->with(['message' => 'Book issued']);
+
+    }
+
+    public function return_book($request_id)
+    {
+        $book_issue = Book_issuing::with('book_borrowed')->findorfail($request_id);
+
+        DB::transaction(function() use($book_issue){
+
+            $book_details = $book_issue->book_borrowed->book_details;//->Quantity;
+            $book_details->increment('Quantity',1);
+
+        
+            $book_issue->Book_status = 'Returned';
+            $book_issue->save();
+
+        });
+
+      return redirect()->back()->with(['message' => 'Book returned']);  
     }
 
     

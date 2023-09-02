@@ -21,6 +21,23 @@
                     
                 </div>
 
+                @if(session('message'))
+            
+                <div class="column mx-5 my-6">
+
+                    <div class="notification is-success is-light">
+
+                        <ul>
+                            <li class="has-text-success is-light">{{ session('message') }}</li>
+                       
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                @endif
+
 
                 <table class="table is-fullwidth">
 

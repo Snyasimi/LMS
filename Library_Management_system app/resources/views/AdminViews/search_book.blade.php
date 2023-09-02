@@ -75,7 +75,7 @@
                         <td>{{ $book->Description }}</td>
                         <td>{{ $book->book_details->Quantity}}</td>
                         <td>
-                            <a href="{{ route('Book.show',['$book' => $book->id])}}" class="button  is-info">View Book</a>
+                            <a href="{{ route('Book.show',['Book' => $book->id])}}" class="button  is-info">View Book</a>
                         </td>
                     </tr>
 

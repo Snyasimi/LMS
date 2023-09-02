@@ -26,8 +26,6 @@
                             <ul class="menu-list">
 
                                 <li><a href="{{ route('AdminHome') }}">Home</a></li>                                
-                                
-                                <li><a href="">Find a Book</a></li>
                                 <li><a href="">Change password</a></li>
                                 <li><a href="">Log Out</a></li>
                                 

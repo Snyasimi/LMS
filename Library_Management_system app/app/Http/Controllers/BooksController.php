@@ -18,7 +18,7 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $Books = Books::with('book-details')->lazy();
+        $Books = Books::with('book_details')->lazy();
 
         return view('Books.index',['Books' => $Books]);
     }
